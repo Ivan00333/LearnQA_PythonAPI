@@ -6,5 +6,3 @@ obj = json.loads(json_text)
 messages = obj.get("messages")
 second_message = messages[1]
 print(second_message.get("message"))
-
-
