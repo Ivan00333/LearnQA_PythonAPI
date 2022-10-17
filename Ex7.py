@@ -27,29 +27,24 @@ print()
 """Проверка всеx возможные сочетания реальных типов запроса и значений параметра method"""
 
 print("Проверка все возможные сочетания реальных типов запроса и значений параметра method:")
-methods = ['POST', 'GET', 'PUT', 'DELETE']
-index = 0
+methods = ["POST", "GET", "PUT", "DELETE"]
 for i in methods:
-    response_get_check_all_types = requests.get(url, params={"method": methods[index]})
+    response_get_check_all_types = requests.get(url, params={"method": i})
     print(f"Текст ответа GET запроса со значением method: {i} - {response_get_check_all_types.text}")
     print(f"Статус код GET запроса со значением method: {i} - {response_get_check_all_types.status_code}")
-    index += 1
 print()
 
 requests_types = [requests.post, requests.put, requests.delete]
 
 methods_not_get = ["POST", "PUT", "DELETE"]
 index_requests_types = 0
-index = 0
 
 for i in requests_types:
     for k in methods:
-        response_check_all_types = i(url, params={"method": methods[index]})
+        response_check_all_types = i(url, params={"method": k})
         print(f"Текст ответа {methods_not_get[index_requests_types]} запроса со значением method: {k} - {response_check_all_types.text}")
         print(f"Статус код {methods_not_get[index_requests_types]} запроса со значением method: {k} - {response_check_all_types.status_code}")
-        index += 1
     index_requests_types += 1
-    index = 0
     print()
 
 
