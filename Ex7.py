@@ -43,15 +43,11 @@ index_requests_types = 0
 index = 0
 
 for i in requests_types:
-    if type == "GET":
-        index_requests_types += 1
-        continue
-    else:
-        for k in methods:
-            response_check_all_types = i(url, params={"method": methods[index]})
-            print(f"Текст ответа {methods_not_get[index_requests_types]} запроса со значением method: {k} - {response_check_all_types.text}")
-            print(f"Статус код {methods_not_get[index_requests_types]} запроса со значением method: {k} - {response_check_all_types.status_code}")
-            index += 1
+    for k in methods:
+        response_check_all_types = i(url, params={"method": methods[index]})
+        print(f"Текст ответа {methods_not_get[index_requests_types]} запроса со значением method: {k} - {response_check_all_types.text}")
+        print(f"Статус код {methods_not_get[index_requests_types]} запроса со значением method: {k} - {response_check_all_types.status_code}")
+        index += 1
     index_requests_types += 1
     index = 0
     print()
