@@ -46,6 +46,3 @@ for i in requests_types:
         print(f"Статус код {methods_not_get[index_requests_types]} запроса со значением method: {k} - {response_check_all_types.status_code}")
     index_requests_types += 1
     print()
-
-
-
