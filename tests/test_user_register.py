@@ -49,6 +49,7 @@ class TestUserRegister(BaseCase):
         ('l' * 251)
     ]
 
+    @allure.description("Create user successfuly")
     def test_create_user_successfuly(self):
         data = self.prepare_registration_data()
 
@@ -57,6 +58,7 @@ class TestUserRegister(BaseCase):
         Assertions.assert_code_status(response, 200)
         Assertions.assert_json_has_key(response, "id")
 
+    @allure.description("Create user with existing email")
     def test_create_user_with_existing_email(self):
         email = 'vinkotov@example.com'
         data = self.prepare_registration_data(email)
@@ -66,6 +68,7 @@ class TestUserRegister(BaseCase):
         Assertions.assert_code_status(response, 400)
         assert response.content.decode('utf-8') == f"Users with email '{email}' already exists", f"Unexpected response content {response.content}"
 
+    @allure.description("Create user with not correct email")
     def test_create_user_with_not_correct_email(self):
         email = 'vinkotovexample.com'
         data = self.prepare_registration_data(email)
@@ -75,6 +78,7 @@ class TestUserRegister(BaseCase):
         Assertions.assert_code_status(response, 400)
         assert response.content.decode('utf-8') == f"Invalid email format"
 
+    @allure.description("Create user without one of parameters")
     @pytest.mark.parametrize('data', exclude_params)
     def test_create_user_without_value(self, data):
 
@@ -86,6 +90,7 @@ class TestUserRegister(BaseCase):
                 break
         assert response.text == f"The value of '{key}' field is too short"
 
+    @allure.description("Registration user with short and long userName")
     @pytest.mark.parametrize('username_value', value)
     def test_short_username(self, username_value):
         data = {
