@@ -8,7 +8,7 @@ from lib.create_auth_user import CreateAuthUser
 @allure.epic("Edit user cases")
 class TestUserEdit(BaseCase):
 
-    @allure.description("Edit just crated user")
+    @allure.title("Edit just crated user")
     def test_edit_just_created_user(self):
         with allure.step("Register and login user"):
             register_data = self.prepare_registration_data()
@@ -44,7 +44,7 @@ class TestUserEdit(BaseCase):
                 "Wrong name of the user after edit"
             )
 
-    @allure.description("Edit user by unauthorized user")
+    @allure.title("Edit user by unauthorized user")
     def test_edit_not_auth_user(self):
         response = MyRequests.put(
             f"/user/2",
@@ -54,7 +54,7 @@ class TestUserEdit(BaseCase):
         Assertions.assert_code_status(response, 400)
         assert response.text == "Auth token not supplied", f"Response text is {response.text}"
 
-    @allure.description("Edit user by another user")
+    @allure.title("Edit user by another user")
     def test_edit_another_auth_user(self):
         with allure.step("Create and login user1"):
             user1_register_data = self.prepare_registration_data()
@@ -98,7 +98,7 @@ class TestUserEdit(BaseCase):
                 "Wrong name of the user after edit"
             )
 
-    @allure.description("Change user email without symbol @")
+    @allure.title("Change user email without symbol @")
     def test_change_user_email_without_symbol(self):
         with allure.step("Create and login user1"):
             register_data = self.prepare_registration_data()
@@ -138,7 +138,7 @@ class TestUserEdit(BaseCase):
             )
 
 
-    @allure.description("Change firstname short value")
+    @allure.title("Change firstname short value")
     def test_change_firstname_short_value(self):
 
         with allure.step("create and login user1"):

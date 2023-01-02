@@ -7,7 +7,7 @@ from lib.base_case import BaseCase
 @allure.epic("Get user cases")
 class TestUserGet(BaseCase):
 
-    @allure.description("Get user details not auth user")
+    @allure.title("Get user details not auth user")
     def test_get_user_details_not_auth(self):
         response = MyRequests.get("/user/2")
 
@@ -16,7 +16,7 @@ class TestUserGet(BaseCase):
         Assertions.assert_json_has_not_key(response, "firstName")
         Assertions.assert_json_has_not_key(response, "lastName")
 
-    @allure.description("Get user details auth as the same user ")
+    @allure.title("Get user details auth as the same user ")
     def test_get_user_details_auth_as_same_user(self):
         data = {
             "email": "vinkotov@example.com",
@@ -37,7 +37,7 @@ class TestUserGet(BaseCase):
         expected_fields = ["username", "email", "firstName", "lastName"]
         Assertions.assert_json_has_keys(response2, expected_fields)
 
-    @allure.description("Get user details by another user")
+    @allure.title("Get user details by another user")
     def test_get_user_details_auth_as_other_user(self):
         data = self.prepare_registration_data()
         password_new_user = data["password"]

@@ -8,7 +8,7 @@ from lib.assertions import Assertions
 
 @allure.epic("Delete user cases")
 class TestUserDelete(BaseCase):
-    @allure.description("Delete user with ID=2")
+    @allure.title("Delete user with ID=2")
     def test_delete_user_with_id2(self):
         email = 'vinkotov@example.com'
         password = '1234'
@@ -35,7 +35,7 @@ class TestUserDelete(BaseCase):
             Assertions.assert_json_has_not_key(response, "firstName")
             Assertions.assert_json_has_not_key(response, "lastName")
 
-    @allure.description("Delete user successful")
+    @allure.title("Delete user successful")
     def test_delete_user_successful(self):
 
         with allure.step("create and login user"):
@@ -61,7 +61,7 @@ class TestUserDelete(BaseCase):
             Assertions.assert_code_status(response_get_user, 404)
             assert response_get_user.text == "User not found", f"Response text is {response_delete.text}"
 
-    @allure.description("Delete user by another user")
+    @allure.title("Delete user by another user")
     def test_delete_another_user(self):
 
         with allure.step("Create and login user1"):
